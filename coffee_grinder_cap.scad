@@ -7,7 +7,7 @@ H = 9.6;
 module coffee_grinder_cap() {
     difference () {
         cylinder(r=R, h=H, $fn=200);
-        translate([0, 0, 4.6]) cylinder(r=R-3, h=H);
+        translate([0, 0, 4.6]) cylinder(r=R-2.8, h=H);
         translate([0, 0, 2]) cylinder(r=45.8/2, h=H);
         translate([0, 0, 2]) ring();
         translate([0, 0, 2.0]) cylinder(r1=45.8/2, r2=51.8/2, h=3.5);
@@ -41,8 +41,8 @@ module ring() {
 
 module dents() {
     rr=1.8/2;
-    r1 = R-1.8-rr;
-    r2 = R-1.4-rr;
+    r1 = R-1.6-rr;
+    r2 = R-1.2-rr;
     beta = 15;
     for (alpha=[0:30:360]) {
    // for (alpha=[0:30:0]) {
