@@ -21,12 +21,26 @@ module coffee_grinder_cap() {
                 translate([0, -8, 0])
                     text("alga design", size=7, halign="center");
             }
+        // Lower chamfer
+        difference() {
+            translate([0, 0, -0.1]) cylinder(r=R+1, h=1.1);
+            translate([0, 0, -0.2]) cylinder(r1=R-1, r2=R, h=1.22);
+        }
+        // Upper chamfer
+        translate([0, 0, H-0.5])
+        difference() {
+            translate([0, 0, -0.1]) cylinder(r=R+1, h=1.1);
+            translate([0, 0, -0.2]) cylinder(r2=R-1, r1=R, h=1.22);
+        }
     }   
     // Outer grip
     for (alpha=[0:10:360]) {
-        rotate([0, 0, alpha]) 
-            translate([R, 0, 0]) 
-                cylinder(r=1.8/2, h=H, $fn=12);
+        rotate([0, 0, alpha])
+            translate([R, 0, 2]) {
+                cylinder(r=1.8/2, h=H-4, $fn=12);
+                sphere(r=1.8/2, $fn=12);
+                translate([0, 0, H-4]) sphere(r=1.8/2, $fn=12);
+        }
     }
 }
 
@@ -40,6 +54,7 @@ module ring() {
 }
 
 module dents() {
+    $fn=20;
     rr=1.8/2;
     r1 = R-1.6-rr;
     r2 = R-1.2-rr;
